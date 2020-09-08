@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" type="text/css" href="../css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../css/grid.css" />
+    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+    <link rel="stylesheet" type="text/css" href="../css/menu.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>FiqueFit - Login</title>
+    <style>
+      .list-cards {
+        padding: 6px;
+      }
+
+      .card-exercise {
+        border-radius: 12px;
+        position: relative;
+        height: 120px;
+        margin: 6px;
+        cursor: pointer;
+      }
+
+      .card-exercise > h1 {
+        color: #fff;
+        text-align: left;
+        position: absolute;
+        bottom: 0;
+        font-size: 16px;
+        padding-left: 16px;
+        text-shadow: 1px 1px #000;
+      }
+
+      .card-exercise > .card-background-image {
+        position: absolute;
+        width: 100%;
+        max-height: 120px;
+        border-radius: 12px;
+        filter: brightness(0.5);
+      }
+
+      .card-exercise > .card-background-image:active {
+        filter: brightness(0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container-fluid list-cards" id="listagem-exercicios"></div>
+
+    <button
+      type="button"
+      class="button button-rounded button-fixed-bottom"
+      onclick="toogleMenu()"
+    >
+      <svg viewBox="0 0 25 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path
+          d="M1.78571 4.4H23.2143C24.2 4.4 25 3.4144 25 2.2C25 0.9856 24.2 0 23.2143 0H1.78571C0.8 0 0 0.9856 0 2.2C0 3.4144 0.8 4.4 1.78571 4.4ZM23.2143 8.8H1.78571C0.8 8.8 0 9.7856 0 11C0 12.2144 0.8 13.2 1.78571 13.2H23.2143C24.2 13.2 25 12.2144 25 11C25 9.7856 24.2 8.8 23.2143 8.8ZM23.2143 17.6H1.78571C0.8 17.6 0 18.5856 0 19.8C0 21.0144 0.8 22 1.78571 22H23.2143C24.2 22 25 21.0144 25 19.8C25 18.5856 24.2 17.6 23.2143 17.6Z"
+          fill="#fff"
+        />
+      </svg>
+    </button>
+
+    <div
+      class="menu-overlay"
+      id="overlay"
+      style="display: none;"
+      onclick="toogleMenu()"
+    ></div>
+
+    <script type="text/javascript" src="../js/db.js"></script>
+    <script
+      type="text/javascript"
+      src="../js/services/login-service.js"
+    ></script>
+    <script type="text/javascript" src="../js/lista-exercicio.js"></script>
+    <script type="text/javascript" src="../js/menu.js"></script>
+    <script>
+      const listagemExercicios = document.querySelector("#listagem-exercicios");
+      listagemExercicios.innerHTML = ListagemExercicios.gerarMenu();
+
+      const username = document.querySelector("#user-name");
+      const dbUser = DataBase.getInstance("User", {
+        cpf: "",
+        name: "",
+        email: ""
+      });
+
+      console.log(dbUser);
+      const name = LoginService.getUser(dbUser.cpf).name;
+
+      if (name) {
+        username.textContent = name.split(" ")[0];
+      }
+    </script>
+  </body>
+</html>

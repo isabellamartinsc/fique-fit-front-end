@@ -1,0 +1,55 @@
+.menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #00000099;
+}
+
+.menu {
+  position: fixed;
+  /* height: 100vh; */
+  width: 80vw;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  transition: left 0.3s ease-in;
+}
+
+.menu-hide {
+  transition: left 0.3s ease-out;
+  left: -80vw;
+}
+
+.menu-header {
+  width: 100%;
+  min-height: 100px;
+  background-color: #c72c41;
+  padding: 16px;
+  text-align: center;
+}
+
+.menu-header > .name-user {
+  font-size: 16px;
+}
+
+.menu-body .option:first {
+  border-top: 1px solid #dfdfdf;
+}
+
+.menu-body .option {
+  padding: 8px 16px;
+  border-bottom: 1px solid #dfdfdf;
+  cursor: pointer;
+}
+
+.menu-body .option:hover {
+  background-color: #dfdfdf;
+}
+
+.menu-body .option.option-active {
+  background-color: #c3c3c3;
+  cursor: default;
+}
